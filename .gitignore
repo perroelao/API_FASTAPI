@@ -1,0 +1,49 @@
+# === PYTHON ===
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+
+# === ENTORNOS VIRTUALES ===
+venv/
+.venv/
+ENV/
+env/
+.Python
+
+# === FASTAPI / UVICORN ===
+*.log
+*.sqlite3
+*.db
+instance/
+*.pid
+
+# === ARCHIVOS SENSIBLES ===
+.env
+*.key
+*.pem
+secrets.*
+config.*
+
+# === PRUEBAS / COVERAGE ===
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.pytest_cache/
+
+# === EDITORES ===
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# === SISTEMA OPERATIVO ===
+.DS_Store
+Thumbs.db
