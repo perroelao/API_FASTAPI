@@ -47,7 +47,7 @@ def obtener_usuarios():
     except Exception as ex:
         raise HTTPException(status_code=500, detail=str(ex))
 
-@router.patch("/{id_buscar}")
+@router.get("/{id_buscar}")
 def obtener_usuario():
     try:
         pass
