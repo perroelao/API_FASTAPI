@@ -88,8 +88,9 @@ def obtener_usuario(id_buscar: int):
         raise HTTPException(status_code=500, detail=str(ex))
 
 @router.post("/")
-def agregar_usuario(id_usuario:int, rut:str, nombre:str, apellido_p:str, apellido_m:str, snombre:str, email:str, fono:str, direccion:str, password:str, rol_id:int):
+def agregar_usuario(id_usuario:int, rut:str, nombre:str, apellido_p:str, apellido_m:str, snombre:str, email:str, fono:str, direccion:str, password:str,):
     try:
+        rol_id=1
         cone = get_conexion()
         cursor = cone.cursor()
         cursor.execute("""INSERT INTO USUARIO 
