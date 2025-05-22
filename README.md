@@ -31,7 +31,7 @@ Este proyecto es una API RESTful desarrollada con **FastAPI** y conectada a una 
 
 6. Levantar API:
    ```bash
-   uvicorn app.main:app
+   uvicorn app.main:app --reload
 
 # AUTOR
   
