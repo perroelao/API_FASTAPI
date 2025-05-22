@@ -1,5 +1,5 @@
 from typing import Optional
-from fastapi import APIRouter,HTTPException
+from fastapi import APIRouter,HTTPException, Body
 from app.database import get_conexion
 
 #variable de las rutas:
@@ -231,4 +231,34 @@ def actualizar_patch(id_actualizar:int, rut:Optional[str]=None, nombre:Optional[
         return {"mensaje": "Usuario actualizado correctamente"}
     except Exception as ex:
         raise HTTPException(status_code=500, detail=str(ex))
-    
+
+@router.post("/login")
+def login(email:str, password:str):
+    try:
+        cone = get_conexion()
+        cursor = cone.cursor()
+        cursor.execute("""
+            SELECT 
+                id_usuario, rut, nombre, apellido_p, apellido_m, snombre, email, fono, direccion, password, rol_id
+            FROM USUARIO
+            WHERE email = :email AND password = :password
+        """, {"email": email, "password": password})
+        usuario = cursor.fetchone()
+        cursor.close()
+        cone.close()
+        if not usuario:
+            raise HTTPException(status_code=401, detail="Credenciales incorrectas")
+        return {
+            "id_usuario": usuario[0],
+            "rut": usuario[1],
+            "nombre": usuario[2],
+            "apellido_p": usuario[3],
+            "apellido_m": usuario[4],
+            "snombre": usuario[5],
+            "email": usuario[6],
+            "fono": usuario[7],
+            "direccion": usuario[8],
+            "rol_id": usuario[10]
+        }
+    except Exception as ex:
+        raise HTTPException(status_code=500, detail=str(ex))

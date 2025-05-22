@@ -4,6 +4,6 @@ def get_conexion():
     conexion = oracledb.connect(
         user="FERREMAS",
         password="FERREMAS",
-        dsn="localhost:1521/XEPDB1"
+        dsn="localhost:1521/orcl.duoc.com.cl"
     )
     return conexion
