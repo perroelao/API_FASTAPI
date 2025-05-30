@@ -15,18 +15,20 @@ def obtener_usuarios():
         cone = get_conexion()
         cursor = cone.cursor()
         cursor.execute("""SELECT 
-                       id_usuario,
-                       rut,
-                       nombre,
-                       apellido_p,
-                       apellido_m,
-                       snombre,
-                       email,
-                       fono,
-                       direccion,
-                       password,
-                       rol_id 
-                       FROM USUARIO""")
+                        u.id_usuario,
+                        u.rut,
+                        u.nombre,
+                        u.apellido_p,
+                        u.apellido_m,
+                        u.snombre,
+                        u.email,
+                        u.fono,
+                        u.direccion,
+                        u.password,
+                        r.nombre AS rol_nombre
+                    FROM USUARIO u
+                    JOIN ROL r ON (u.rol_id = r.rol_id)
+                    ORDER BY u.id_usuario""")
         usuarios = []
         for (id_usuario, rut, nombre, apellido_p, apellido_m, snombre, email, fono, direccion, password, rol_id) in cursor:
             usuarios.append({
